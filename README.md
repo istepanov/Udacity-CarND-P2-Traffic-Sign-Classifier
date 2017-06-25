@@ -53,7 +53,7 @@ signs data set:
 
 #### 1. Describe how you preprocessed the image data. What techniques were chosen and why did you choose these techniques? Consider including images showing the output of each preprocessing technique. Pre-processing refers to techniques such as converting to grayscale, normalization, etc. (OPTIONAL: As described in the "Stand Out Suggestions" part of the rubric, if you generated additional data for training, describe why you decided to generate additional data, how you generated the data, and provide example images of the additional data. Then describe the characteristics of the augmented training set like number of images in the set, number of images for each class, etc.)
 
-All input images are normalized and grayscaled. Normalization means that every pixel value is converted to be in interval `[-0.5, 0.5]` instead of `[0, 255]`. That makes mean value 0 and small mean square deviation. Normalized data helps neural network to be trained faster and reduces the chances of getting stuck in local optima. Grayscaling simply reduces the number of input data the neural network needs to learn (1-pixel depth instead of 3), that reduces network size and makes training faster.
+All input images are normalized and grayscaled. Normalization means that every pixel value is converted to be in interval `[-0.5, 0.5]` instead of `[0, 255]`. That makes mean value 0 and small mean squared deviation. Normalized data helps neural network to be trained faster and reduces the chances of getting stuck in local optima. Grayscaling simply reduces the number of input data the neural network needs to learn (1-pixel depth instead of 3), that reduces network size and makes training faster.
 
 To make a larger training set I've generated some additional data by augmenting existing training set (randomly choosing 25% images to augment):
 
@@ -63,15 +63,15 @@ The augmentation includes random scaling, rotating, translating and changing ima
 
 #### 2. Describe what your final model architecture looks like including model type, layers, layer sizes, connectivity, etc.) Consider including a diagram and/or table describing the final model.
 
-My final model is basically the classical LeNet-5 plus 50% dropout layers between fully-connected layers.
+My model is basically the classic LeNet architecture plus 50% dropout layers between fully-connected layers:
 
 | Layer                 |     Description                               |
 |:---------------------:|:---------------------------------------------:|
 | Input                 | 32x32x1 grayscale image                       |
-| Convolution 3x3       | 1x1 stride, valid padding, outputs 28x28x6    |
+| Convolution 1x1       | 1x1 stride, valid padding, outputs 28x28x6    |
 | ReLU                  |                                               |
 | Max pooling           | 2x2 stride, outputs 14x14x6                   |
-| Convolution 3x3       | valid padding, outputs 10x10x16               |
+| Convolution 1x1       | 1x1 stride, valid padding, outputs 10x10x16   |
 | ReLU                  |                                               |
 | Max pooling           | 2x2 stride, outputs 5x5x16                    |
 | Fully connected       | Input - 400, output - 120                     |
